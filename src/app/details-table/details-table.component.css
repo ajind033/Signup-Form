@@ -1,0 +1,7 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css');
+
+.tableContainer{
+    max-width: 50%;
+    background-color: #f1f1f1;
+    margin: auto;
+}

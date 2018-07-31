@@ -10,13 +10,19 @@ import {Router} from '@angular/router'
 })
 export class RegisterFromComponent implements OnInit {
 
-  constructor( private route:Router) { }
+  constructor( private route:Router) {}    
 
   ngOnInit() {
+    if(window.location.pathname == "/editDetails"){      
+      this.userobj= new Users();
+      this.userobj = JSON.parse(localStorage.getItem("signupDetails"));
+     }
+     else if(window.location.pathname==""){
+       this.userobj= new Users();
+     }
+     console.log(this.userobj)
   }
-
-  userobj = new Users();
-
+  userobj =new Users();
   detailsForm = new FormGroup({
     empid: new FormControl(this.userobj.empid, [Validators.minLength(4), Validators.pattern('[0-9]*'), Validators.required]),
     fname: new FormControl(this.userobj.fname, [Validators.pattern('[a-zA-Z ]*'), , Validators.required]),
