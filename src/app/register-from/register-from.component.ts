@@ -41,7 +41,7 @@ export class RegisterFromComponent implements OnInit {
   get getDetail() {
     return this.detailsForm.controls;
   } 
-  confrimPass: boolean = true;
+  confrimPass: boolean = false;
   checkPass() {
     this.confrimPass = this.detailsForm.value.password === this.detailsForm.value.confirmPassword;
   }
