@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
 })
 export class DetailsTableComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route: Router) { }
   data: object;
   ngOnInit() {
 
@@ -27,33 +27,16 @@ export class DetailsTableComponent implements OnInit {
       var node2 = document.createTextNode(this.data[key]);
       td2.appendChild(node2);
 
-      if ((key == "password")||(key == "confirmPassword")) {
-        td2.setAttribute('id', key);
-        td2.addEventListener("click", (e: Event) => this.toggle(td2));
-      }
       trData.appendChild(td2);
-
       table.appendChild(trData);
     }
   }
-flag : boolean =false;
-  toggle(td2){
-      if(this.flag){
-    console.log(this.flag)
-       td2.setAttribute('style','-webkit-text-security: disc');
-        }
-      else{
-        console.log(this.flag)
-       td2.setAttribute('style','-webkit-text-security: none');
-      }
-      this.flag = !this.flag;
-    }
-
-    editDetails(){
-      this.route.navigate( ["/editDetails"]);
-    }
  
+  editDetails() {
+    this.route.navigate(["/editDetails"]);
   }
+
+}
 
 
 

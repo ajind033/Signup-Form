@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Users } from '../users';
-import {Router} from '@angular/router'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register-from',
@@ -10,19 +10,25 @@ import {Router} from '@angular/router'
 })
 export class RegisterFromComponent implements OnInit {
 
-  constructor( private route:Router) {}    
+  constructor(private route: Router) { }
 
   ngOnInit() {
-    if(window.location.pathname == "/editDetails"){      
-      this.userobj= new Users();
+    if (window.location.pathname == "/editDetails") {
       this.userobj = JSON.parse(localStorage.getItem("signupDetails"));
-     }
-     else if(window.location.pathname==""){
-       this.userobj= new Users();
-     }
-     console.log(this.userobj)
+      this.detailsForm.patchValue({
+        empid: this.userobj.empid,
+        fname: this.userobj.fname,
+        lname: this.userobj.lname,
+        contact: this.userobj.contact,
+        gender: this.userobj.gender,
+        password: this.userobj.password,
+        confirmPassword: this.userobj.password
+
+      })
+    }
+    console.log(this.userobj)
   }
-  userobj =new Users();
+  userobj = new Users();
   detailsForm = new FormGroup({
     empid: new FormControl(this.userobj.empid, [Validators.minLength(4), Validators.pattern('[0-9]*'), Validators.required]),
     fname: new FormControl(this.userobj.fname, [Validators.pattern('[a-zA-Z ]*'), , Validators.required]),
@@ -30,19 +36,19 @@ export class RegisterFromComponent implements OnInit {
     contact: new FormControl(this.userobj.contact, [Validators.minLength(10), Validators.pattern('[0-9 ]*'), Validators.required]),
     gender: new FormControl(this.userobj.gender, [Validators.pattern('(M)|(F)|(m)|(f)'), Validators.required]),
     password: new FormControl(this.userobj.password, [Validators.minLength(8), Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+={};:"|,.<>]).{0,16})')]),
-    confirmPassword: new FormControl(this.userobj.confirmPassword,[Validators.minLength(8), Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+={};:"|,.<>]).{0,16})')])
+    confirmPassword: new FormControl(this.userobj.password, [Validators.minLength(8), Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+={};:"|,.<>]).{0,16})')])
   });
 
   get getDetail() {
     return this.detailsForm.controls;
   }
-  confrimPass: boolean = false;
+  confrimPass: boolean = true;
   checkPass() {
     this.confrimPass = this.detailsForm.value.password === this.detailsForm.value.confirmPassword;
   }
   onSubmit() {
-    localStorage.setItem("signupDetails", JSON.stringify(this.detailsForm.value));    
-    this.route.navigate( ["/userDetails"]);
+    localStorage.setItem("signupDetails", JSON.stringify(this.detailsForm.value));
+    this.route.navigate(["/userDetails"]);
   }
 
 }
