@@ -26,7 +26,6 @@ export class RegisterFromComponent implements OnInit {
 
       })
     }
-    console.log(this.userobj)
   }
   userobj = new Users();
   detailsForm = new FormGroup({
@@ -41,10 +40,20 @@ export class RegisterFromComponent implements OnInit {
 
   get getDetail() {
     return this.detailsForm.controls;
-  }
+  } 
   confrimPass: boolean = true;
   checkPass() {
     this.confrimPass = this.detailsForm.value.password === this.detailsForm.value.confirmPassword;
+  }
+  togglePassFlag: boolean = false;
+  togglePass(id) {
+    if (this.togglePassFlag) {
+      document.getElementById(id).setAttribute('type', 'password');
+    }
+    else {
+      document.getElementById(id).setAttribute('type', 'text');
+    }
+    this.togglePassFlag = !this.togglePassFlag;
   }
   onSubmit() {
     localStorage.setItem("signupDetails", JSON.stringify(this.detailsForm.value));

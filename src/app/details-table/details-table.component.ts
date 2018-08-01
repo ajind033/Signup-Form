@@ -10,32 +10,21 @@ export class DetailsTableComponent implements OnInit {
 
   constructor(private route: Router) { }
   data: object;
-  ngOnInit() {
-
-    this.data = JSON.parse(localStorage.getItem("signupDetails"));
-    var table = document.getElementById("userDetails");
-
-    for (let key in this.data) {
-      var trData = document.createElement("tr");
-
-      var td1 = document.createElement("td");
-      var node1 = document.createTextNode(key);
-      td1.appendChild(node1);
-      trData.appendChild(td1);
-
-      var td2 = document.createElement("td");
-      var node2 = document.createTextNode(this.data[key]);
-      td2.appendChild(node2);
-
-      trData.appendChild(td2);
-      table.appendChild(trData);
+  ngOnInit() {}
+  detailsData = JSON.parse(localStorage.getItem("signupDetails"));
+  togglePassFlag: boolean = false;
+  togglePass(id) {
+    if (this.togglePassFlag) {
+      document.getElementById(id).setAttribute('type', 'password');
     }
+    else {
+      document.getElementById(id).setAttribute('type', 'text');
+    }
+    this.togglePassFlag = !this.togglePassFlag;
   }
- 
   editDetails() {
     this.route.navigate(["/editDetails"]);
   }
-
 }
 
 
