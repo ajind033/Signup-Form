@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Users } from '../users';
 import { Router } from '@angular/router'
-
+import{ SignupService } from '../signup.service'
 @Component({
   selector: 'app-register-from',
   templateUrl: './register-from.component.html',
@@ -10,11 +10,11 @@ import { Router } from '@angular/router'
 })
 export class RegisterFromComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private service:SignupService) { }
 
   ngOnInit() {
     if (window.location.pathname == "/editDetails") {
-      this.userobj = JSON.parse(localStorage.getItem("signupDetails"));
+      this.userobj = this.service.userData;
       this.detailsForm.patchValue({
         empid: this.userobj.empid,
         fname: this.userobj.fname,
@@ -56,7 +56,7 @@ export class RegisterFromComponent implements OnInit {
     this.togglePassFlag = !this.togglePassFlag;
   }
   onSubmit() {
-    localStorage.setItem("signupDetails", JSON.stringify(this.detailsForm.value));
+    this.service.userData=this.detailsForm.value;
     this.route.navigate(["/userDetails"]);
   }
 

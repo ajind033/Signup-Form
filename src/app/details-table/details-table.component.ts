@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { SignupService } from '../signup.service'
 
 @Component({
   selector: 'app-details-table',
@@ -8,10 +9,10 @@ import { Router } from '@angular/router'
 })
 export class DetailsTableComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private service:SignupService) { }
   data: object;
   ngOnInit() { }
-  detailsData = JSON.parse(localStorage.getItem("signupDetails"));
+  detailsData = this.service.userData;
   togglePassFlag: boolean = false;
   togglePass(id) {
     if (this.togglePassFlag) {
