@@ -11,7 +11,7 @@ export class DetailsTableComponent implements OnInit {
 
   constructor(private route: Router, private service:SignupService) { }
   data: object;
-  ngOnInit() { }
+  ngOnInit() {}
   detailsData = this.service.userData;
   togglePassFlag: boolean = false;
   togglePass(id) {

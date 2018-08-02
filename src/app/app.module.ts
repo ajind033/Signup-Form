@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { RegisterFromComponent } from './register-from/register-from.component';
 import { DetailsTableComponent } from './details-table/details-table.component';
 
-import {RouterModule, Routes} from '@angular/router'; 
+import {RouterModule, Routes} from '@angular/router';
+import { FileNotFoundComponent } from './file-not-found/file-not-found.component'; 
 
 const appRoutes : Routes = [
   {
     path : "",
-    component : RegisterFromComponent
+    component : RegisterFromComponent, 
   },{
   path : "userDetails",
   component : DetailsTableComponent
@@ -25,7 +26,8 @@ const appRoutes : Routes = [
   declarations: [
     AppComponent,
     RegisterFromComponent,
-    DetailsTableComponent
+    DetailsTableComponent,
+    FileNotFoundComponent
   ],
   imports: [
     BrowserModule,

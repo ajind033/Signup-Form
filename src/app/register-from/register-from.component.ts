@@ -14,7 +14,7 @@ export class RegisterFromComponent implements OnInit {
 
   ngOnInit() {
     if (window.location.pathname == "/editDetails") {
-      this.userobj = this.service.userData;
+        this.userobj = this.service.userData;
       this.detailsForm.patchValue({
         empid: this.userobj.empid,
         fname: this.userobj.fname,
@@ -24,7 +24,9 @@ export class RegisterFromComponent implements OnInit {
         password: this.userobj.password,
         confirmPassword: this.userobj.confirmPassword
 
-      })
+      })       
+      
+      
     }
   }
   userobj = new Users();
