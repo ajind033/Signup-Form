@@ -23,7 +23,7 @@
     <div class="form-group">
       <label>
         First Name:
-        <input type="text" class="form-control" name="fname" formControlName="fname">
+        <input type="text" class="form-control" name="fname" formControlName="fname" maxlength="20">
 
         <div *ngIf="getDetail.fname.invalid && (getDetail.fname.dirty || getDetail.fname.touched)" class="alert alert-danger">
           <div *ngIf="getDetail.fname.errors.required">
@@ -39,7 +39,7 @@
     <div class="form-group">
       <label>
         Last Name:
-        <input type="text" class="form-control" formControlName="lname">
+        <input type="text" class="form-control" formControlName="lname" maxlength="20">
 
         <div *ngIf="getDetail.lname.invalid && (getDetail.lname.dirty || getDetail.lname.touched)" class="alert alert-danger">
           <div *ngIf="getDetail.lname.errors.required">
@@ -117,7 +117,7 @@
         </div>
       </label>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="(!detailsForm.valid)">Submit</button>
+    <button type="submit" class="btn btn-success" [disabled]="(!detailsForm.valid) || (!confrimPass)">Submit</button>
   </form>
   <br/>
 </div>
