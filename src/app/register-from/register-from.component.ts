@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Users } from '../users';
 import { Router } from '@angular/router'
-import{ SignupService } from '../signup.service'
+import { SignupService } from '../signup.service'
 @Component({
   selector: 'app-register-from',
   templateUrl: './register-from.component.html',
@@ -10,11 +10,11 @@ import{ SignupService } from '../signup.service'
 })
 export class RegisterFromComponent implements OnInit {
 
-  constructor(private route: Router, private service:SignupService) { }
+  constructor(private route: Router, private service: SignupService) { }
 
   ngOnInit() {
     if (window.location.pathname == "/editDetails") {
-        this.userobj = this.service.userData;
+      this.userobj = this.service.getUser();
       this.detailsForm.patchValue({
         empid: this.userobj.empid,
         fname: this.userobj.fname,
@@ -24,9 +24,9 @@ export class RegisterFromComponent implements OnInit {
         password: this.userobj.password,
         confirmPassword: this.userobj.confirmPassword
 
-      })       
-      
-      
+      })
+
+
     }
   }
   userobj = new Users();
@@ -58,7 +58,7 @@ export class RegisterFromComponent implements OnInit {
     this.togglePassFlag = !this.togglePassFlag;
   }
   onSubmit() {
-    this.service.userData=this.detailsForm.value;
+    this.service.setUser(this.detailsForm.value);
     this.route.navigate(["/userDetails"]);
   }
 

@@ -7,4 +7,10 @@ import {Users} from './users'
 export class SignupService {
   userData : Users;
   constructor() { }
+  setUser(userData):void{
+    this.userData=userData;
+  }
+  getUser():Users{
+    return this.userData;
+  }
 }

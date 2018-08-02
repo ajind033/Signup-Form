@@ -10,9 +10,9 @@ import { SignupService } from '../signup.service'
 export class DetailsTableComponent implements OnInit {
 
   constructor(private route: Router, private service:SignupService) { }
-  data: object;
+  
   ngOnInit() {}
-  detailsData = this.service.userData;
+  detailsData = this.service.getUser();
   togglePassFlag: boolean = false;
   togglePass(id) {
     if (this.togglePassFlag) {
