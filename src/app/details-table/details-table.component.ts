@@ -10,7 +10,7 @@ export class DetailsTableComponent implements OnInit {
 
   constructor(private route: Router) { }
   data: object;
-  ngOnInit() {}
+  ngOnInit() { }
   detailsData = JSON.parse(localStorage.getItem("signupDetails"));
   togglePassFlag: boolean = false;
   togglePass(id) {

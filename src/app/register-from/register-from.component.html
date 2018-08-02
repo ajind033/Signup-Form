@@ -88,9 +88,9 @@
       <label>
         Password:
         <div class="form-control">
-        <input type="password" id="passwordId" style="border: none;" formControlName="password" maxlength="16">
-        <span class="glyphicon glyphicon-eye-open" (click)='togglePass("passwordId")'></span>
-      </div>
+          <input type="password" id="passwordId" style="border: none;" formControlName="password" maxlength="16">
+          <span class="glyphicon glyphicon-eye-open" (click)='togglePass("passwordId")'></span>
+        </div>
         <div *ngIf="getDetail.password.invalid && (getDetail.password.dirty || getDetail.password.touched)" class="alert alert-danger">
           <div *ngIf="getDetail.password.errors.required">
             It is required.
@@ -109,8 +109,12 @@
       <label>
         Confirm Password:
         <div class="form-control">
-          <input type="password" style="border: none;" id='confirmPasswordId' formControlName="confirmPassword" maxlength="16"(keyup)='checkPass()'>
+          <input type="password" style="border: none;" id='confirmPasswordId' formControlName="confirmPassword" maxlength="16" (keyup)='checkPass()'>
           <span class="glyphicon glyphicon-eye-open" (click)='togglePass("confirmPasswordId")'></span>
+        </div>
+        <div *ngIf="getDetail.confirmPassword.invalid && (getDetail.confirmPassword.dirty || getDetail.confirmPassword.touched)"
+          class="alert alert-danger">
+          It is required.
         </div>
         <div *ngIf="!confrimPass && (getDetail.confirmPassword.dirty || getDetail.confirmPassword.touched)" class="alert alert-danger">
           Password doesn't match.

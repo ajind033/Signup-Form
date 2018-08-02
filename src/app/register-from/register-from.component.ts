@@ -22,7 +22,7 @@ export class RegisterFromComponent implements OnInit {
         contact: this.userobj.contact,
         gender: this.userobj.gender,
         password: this.userobj.password,
-        confirmPassword: this.userobj.password
+        confirmPassword: this.userobj.confirmPassword
 
       })
     }
@@ -35,12 +35,12 @@ export class RegisterFromComponent implements OnInit {
     contact: new FormControl(this.userobj.contact, [Validators.minLength(10), Validators.pattern('[0-9 ]*'), Validators.required]),
     gender: new FormControl(this.userobj.gender, [Validators.pattern('(M)|(F)|(m)|(f)'), Validators.required]),
     password: new FormControl(this.userobj.password, [Validators.minLength(8), Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+={};:"|,.<>]).{0,16})')]),
-    confirmPassword: new FormControl(this.userobj.password, Validators.required)
+    confirmPassword: new FormControl(this.userobj.confirmPassword, [Validators.required])
   });
 
   get getDetail() {
     return this.detailsForm.controls;
-  } 
+  }
   confrimPass: boolean = true;
   checkPass() {
     this.confrimPass = this.detailsForm.value.password === this.detailsForm.value.confirmPassword;

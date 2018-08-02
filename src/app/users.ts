@@ -1,5 +1,5 @@
 export class Users {
-    constructor(){}
+    constructor() { }
     public empid: string;
     public fname: string;
     public lname: string;
