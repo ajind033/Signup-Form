@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Users } from '../users';
 import { Router } from '@angular/router'
 import { SignupService } from '../signup.service'
 @Component({
@@ -13,31 +12,30 @@ export class RegisterFromComponent implements OnInit {
   constructor(private route: Router, private service: SignupService) { }
 
   ngOnInit() {
-    if (window.location.pathname == "/editDetails") {
-      this.userobj = this.service.getUser();
+    
+      if (window.location.pathname == "/editDetails") {
+      let userobj= this.service.getUser();
       this.detailsForm.patchValue({
-        empid: this.userobj.empid,
-        fname: this.userobj.fname,
-        lname: this.userobj.lname,
-        contact: this.userobj.contact,
-        gender: this.userobj.gender,
-        password: this.userobj.password,
-        confirmPassword: this.userobj.confirmPassword
+        empid: userobj.empid,
+        fname: userobj.fname,
+        lname: userobj.lname,
+        contact:userobj.contact,
+        gender: userobj.gender,
+        password:userobj.password,
+        confirmPassword:userobj.confirmPassword
 
       })
-
-
     }
   }
-  userobj = new Users();
+  genders = ['Male','Female','Others'];
   detailsForm = new FormGroup({
-    empid: new FormControl(this.userobj.empid, [Validators.minLength(4), Validators.pattern('[0-9]*'), Validators.required]),
-    fname: new FormControl(this.userobj.fname, [Validators.pattern('[a-zA-Z ]*'), , Validators.required]),
-    lname: new FormControl(this.userobj.lname, [Validators.pattern('[a-zA-Z ]*'), Validators.required]),
-    contact: new FormControl(this.userobj.contact, [Validators.minLength(10), Validators.pattern('[0-9 ]*'), Validators.required]),
-    gender: new FormControl(this.userobj.gender, [Validators.pattern('(M)|(F)|(m)|(f)'), Validators.required]),
-    password: new FormControl(this.userobj.password, [Validators.minLength(8), Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+={};:"|,.<>]).{0,16})')]),
-    confirmPassword: new FormControl(this.userobj.confirmPassword, [Validators.required])
+    empid: new FormControl('', [Validators.minLength(4), Validators.pattern('[0-9]*'), Validators.required]),
+    fname: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), , Validators.required]),
+    lname: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.required]),
+    contact: new FormControl('', [Validators.minLength(10), Validators.pattern('[0-9 ]*'), Validators.required]),
+    gender: new FormControl('Male', [ Validators.required]),
+    password: new FormControl('', [Validators.minLength(8), Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+={};:"|,.<>]).{0,16})')]),
+    confirmPassword: new FormControl('', [Validators.required])
   });
 
   get getDetail() {

@@ -12,7 +12,7 @@ export class DetailsTableComponent implements OnInit {
   constructor(private route: Router, private service:SignupService) { }
   
   ngOnInit() {}
-  detailsData = this.service.getUser();
+  detailsData:any = this.service.getUser();
   togglePassFlag: boolean = false;
   togglePass(id) {
     if (this.togglePassFlag) {
