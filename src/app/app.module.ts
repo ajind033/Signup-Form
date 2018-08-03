@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { RegisterFromComponent } from './register-from/register-from.component';
 import { DetailsTableComponent } from './details-table/details-table.component';
 
+import { SignupService } from './signup.service';
+import{ AuthService } from './auth.service';
 import {RouterModule, Routes} from '@angular/router';
 
 const appRoutes : Routes = [
@@ -14,10 +16,12 @@ const appRoutes : Routes = [
     component : RegisterFromComponent
   },{
   path : "userDetails",
-  component : DetailsTableComponent
+  component : DetailsTableComponent,
+  canActivate: [AuthService]
   },{
     path : "editDetails",
-    component : RegisterFromComponent
+    component : RegisterFromComponent,
+    canActivate: [AuthService]
     }
 ]
 
@@ -32,7 +36,10 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule 
   ],
-  providers: [],
+  providers: [
+    SignupService,
+    AuthService
+  ],
   bootstrap: [AppComponent] 
 })
 export class AppModule { }

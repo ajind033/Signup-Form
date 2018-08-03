@@ -13,7 +13,7 @@ export class RegisterFromComponent implements OnInit {
 
   ngOnInit() {
     
-      if (window.location.pathname == "/editDetails") {
+      if (this.route.url == "/editDetails") {
       let userobj= this.service.getUser();
       this.detailsForm.patchValue({
         empid: userobj.empid,
@@ -25,6 +25,9 @@ export class RegisterFromComponent implements OnInit {
         confirmPassword:userobj.confirmPassword
 
       })
+    }
+    else if(this.route.url == '/'){
+      sessionStorage.clear();
     }
   }
   genders = ['Male','Female','Others'];
@@ -57,6 +60,7 @@ export class RegisterFromComponent implements OnInit {
   }
   onSubmit() {
     this.service.setUser(this.detailsForm.value);
+    sessionStorage.setItem('key','authanticate');
     this.route.navigate(["/userDetails"]);
   }
 
